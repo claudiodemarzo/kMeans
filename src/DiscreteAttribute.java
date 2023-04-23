@@ -6,7 +6,7 @@
  *
  * @author Claudio De Marzo
  */
-public class DiscreteAttribute extends Attribute{
+class DiscreteAttribute extends Attribute{
 
     /**
      * Valori possibili dell'attributo
@@ -19,7 +19,7 @@ public class DiscreteAttribute extends Attribute{
      * @param index L'indice dell'attributo
      * @param values I valori possibili dell'attributo
      */
-    public DiscreteAttribute(String name, int index, String[] values) {
+    DiscreteAttribute(String name, int index, String[] values) {
         super(name, index);
         this.values = values;
     }
