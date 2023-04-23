@@ -6,7 +6,7 @@
  *
  * @author Claudio De Marzo
  */
-public class ContinuousAttribute extends Attribute {
+class ContinuousAttribute extends Attribute {
     /**
      * Valore massimo del dominio dell'attributo
      */
@@ -23,7 +23,7 @@ public class ContinuousAttribute extends Attribute {
      * @param min Il valore minimo del dominio dell'attributo
      * @param max Il valore massimo del dominio dell'attributo
      */
-    public ContinuousAttribute(String name, int index, double min, double max) {
+    ContinuousAttribute(String name, int index, double min, double max) {
         super(name, index);
         this.max = max;
         this.min = min;
@@ -36,7 +36,7 @@ public class ContinuousAttribute extends Attribute {
      * @param v Il valore da normalizzare
      * @return Il valore normalizzato
      */
-    public double getScaledValue(double v) {
+    double getScaledValue(double v) {
         return (v - min) / (max - min);
     }
 }

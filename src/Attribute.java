@@ -5,7 +5,7 @@
  *
  * @author Claudio De Marzo
  */
-public abstract class Attribute {
+abstract class Attribute {
     /**
      * Nome dell'attributo
      */
@@ -20,7 +20,7 @@ public abstract class Attribute {
      * @param name il nome dell'attributo
      * @param index l'indice dell'attributo
      */
-    public Attribute(String name, int index) {
+    Attribute(String name, int index) {
         this.name = name;
         this.index = index;
     }
@@ -29,7 +29,7 @@ public abstract class Attribute {
      * Restituisce il nome dell'attributo
      * @return il nome dell'attributo
      */
-    public String getName() {
+    String getName() {
         return name;
     }
 
@@ -37,7 +37,7 @@ public abstract class Attribute {
      * Restituisce l'indice dell'attributo
      * @return l'indice dell'attributo
      */
-    public int getIndex() {
+    int getIndex() {
         return index;
     }
 

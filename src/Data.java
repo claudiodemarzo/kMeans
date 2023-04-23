@@ -22,7 +22,7 @@ public class Data {
     /**
      * Costruttore della classe Data. Costruisce il dataset attraverso l'inizializzazione de l'array di oggetti Object[][] data, il numero di esempi numberOfExamples e l'array di attributi attributeSet.
      */
-    public Data() {
+    Data() {
         data = new Object[14][5];
 
         data[0][0] = "sunny";
@@ -136,7 +136,7 @@ public class Data {
      * Restituisce il numero di esempi
      * @return Il numero di esempi
      */
-    public int getNumberOfExamples() {
+    private int getNumberOfExamples() {
         return numberOfExamples;
     }
 
@@ -144,7 +144,7 @@ public class Data {
      * Restituisce il numero degli attributi
      * @return Il numero degli attributi
      */
-    public int getNumberOfExplanatoryAttributes() {
+    private int getNumberOfExplanatoryAttributes() {
         return attributeSet.length;
     }
 
@@ -152,7 +152,7 @@ public class Data {
      * Restituisce lo schema del dataset
      * @return Array di Attribute che rappresenta lo schema del dataset
      */
-    public Attribute[] getAttributeSchema() {
+    private Attribute[] getAttributeSchema() {
         return attributeSet;
     }
 
@@ -162,7 +162,7 @@ public class Data {
      * @param attributeIndex Indice dell'attributo
      * @return Il valore dell'attributo
      */
-    public Object getAttributeValue(int exampleIndex, int attributeIndex) {
+    private Object getAttributeValue(int exampleIndex, int attributeIndex) {
         return data[exampleIndex][attributeIndex];
     }
 
