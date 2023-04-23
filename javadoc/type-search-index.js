@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"Attribute"},{"p":"<Unnamed>","l":"ContinuousAttribute"},{"p":"<Unnamed>","l":"Data"},{"p":"<Unnamed>","l":"DiscreteAttribute"}];updateSearchResults();
