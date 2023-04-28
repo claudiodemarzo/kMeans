@@ -1,3 +1,7 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 /**
  * Data.java
  * <p>
@@ -134,40 +138,102 @@ public class Data {
 
     /**
      * Restituisce il numero di esempi
+     *
      * @return Il numero di esempi
      */
-    private int getNumberOfExamples() {
+    int getNumberOfExamples() {
         return numberOfExamples;
     }
 
     /**
      * Restituisce il numero degli attributi
+     *
      * @return Il numero degli attributi
      */
-    private int getNumberOfExplanatoryAttributes() {
+    int getNumberOfExplanatoryAttributes() {
         return attributeSet.length;
     }
 
     /**
      * Restituisce lo schema del dataset
+     *
      * @return Array di Attribute che rappresenta lo schema del dataset
      */
-    private Attribute[] getAttributeSchema() {
+    Attribute[] getAttributeSchema() {
         return attributeSet;
     }
 
     /**
      * Restituisce il valore di un attributo di un esempio
-     * @param exampleIndex Indice dell'esempio
+     *
+     * @param exampleIndex   Indice dell'esempio
      * @param attributeIndex Indice dell'attributo
      * @return Il valore dell'attributo
      */
-    private Object getAttributeValue(int exampleIndex, int attributeIndex) {
+    Object getAttributeValue(int exampleIndex, int attributeIndex) {
         return data[exampleIndex][attributeIndex];
+    }
+
+    Tuple getItemSet(int index) {
+        Tuple tuple = new Tuple(attributeSet.length);
+        for (int i = 0; i < attributeSet.length; i++)
+            tuple.add(new DiscreteItem(attributeSet[i], (String) data[index][i]), i);
+        return tuple;
+    }
+
+    int[] sampling(int k) {
+        int[] centroidIndexes = new int[k];
+        //choose k random different centroids in data.
+        Random rand = new Random();
+        rand.setSeed(System.currentTimeMillis());
+        for (int i = 0; i < k; i++) {
+            boolean found = false;
+            int c;
+            do {
+                found = false;
+                c = rand.nextInt(getNumberOfExamples());
+                // verify that centroid[c] is not equal to a centroide already stored in CentroidIndexes
+                for (int j = 0; j < i; j++)
+                    if (compare(centroidIndexes[j], c)) {
+                        found = true;
+                        break;
+                    }
+            }
+            while (found);
+            centroidIndexes[i] = c;
+        }
+        return centroidIndexes;
+    }
+
+    private boolean compare(int i, int j){
+        Tuple t1 = getItemSet(i), t2 = getItemSet(j);
+        for(int k = 0; k < t1.getLength(); k++)
+            if(!t1.get(k).equals(t2.get(k)))
+                return false;
+        return true;
+    }
+
+    Object computePrototype(ArraySet idList, Attribute attribute){
+        return computePrototype(idList, (DiscreteAttribute) attribute);
+    }
+    String computePrototype(ArraySet idList, DiscreteAttribute attribute){
+        Map<Object, Integer> counterMap = new HashMap<>();
+        for(int i = 0; i<attribute.getNumberOfDistinctValues(); i++){
+            counterMap.put(attribute.getValue(i), attribute.frequency(this, idList, attribute.getValue(i)));
+        }
+        Object proto = null;
+        int maxVal = Integer.MIN_VALUE;
+        for(Map.Entry<Object, Integer> entry : counterMap.entrySet())
+            if(entry.getValue() > maxVal){
+                maxVal = entry.getValue();
+                proto = entry.getKey();
+            }
+        return (String) proto;
     }
 
     /**
      * Restituisce la rappresentazione in stringa del dataset
+     *
      * @return Il dataset sotto forma di stringa
      */
     @Override
@@ -187,15 +253,4 @@ public class Data {
         }
         return s;
     }
-
-    /**
-     * Entry point del programma
-     *
-     * @param args I parametri della riga di comando
-     */
-    public static void main(String args[]) {
-        Data trainingSet = new Data();
-        System.out.println(trainingSet);
-    }
-
 }
