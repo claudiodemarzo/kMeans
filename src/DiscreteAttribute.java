@@ -44,6 +44,14 @@ class DiscreteAttribute extends Attribute {
         return values[i];
     }
 
+    /**
+     * Restituisce il numero di volte che un determinato valore compare in un insieme di esempi rispetto all'attributo corrente.
+     * @param data il dataset sul quale contare le occorrenze
+     * @param idList l'insieme di esempi sul quale contare le occorrenze
+     * @param v il valore di cui contare le occorrenze
+     * @return il numero di volte che il valore v compare nell'insieme di esempi idList rispetto all'attributo corrente
+     */
+
     int frequency(Data data, ArraySet idList, String v) {
         int count = 0;
         int[] idArray = idList.toArray();
