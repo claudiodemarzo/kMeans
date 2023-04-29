@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"Data"}];updateSearchResults();
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"ArraySet"},{"p":"<Unnamed>","l":"Cluster"},{"p":"<Unnamed>","l":"ClusterSet"},{"p":"<Unnamed>","l":"Data"},{"p":"<Unnamed>","l":"DiscreteItem"},{"p":"<Unnamed>","l":"Item"},{"p":"<Unnamed>","l":"KmeansMiner"},{"p":"<Unnamed>","l":"MainTest"},{"p":"<Unnamed>","l":"Tuple"}];updateSearchResults();
