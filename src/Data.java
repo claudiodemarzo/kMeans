@@ -174,12 +174,23 @@ public class Data {
         return data[exampleIndex][attributeIndex];
     }
 
+    /**
+     * Restituisce una Tupla che contiene i valori degli attributi di un esempio
+     * @param index l'indice dell'esempio
+     * @return la Tupla che contiene i valori degli attributi di un esempio
+     */
     Tuple getItemSet(int index) {
         Tuple tuple = new Tuple(attributeSet.length);
         for (int i = 0; i < attributeSet.length; i++)
             tuple.add(new DiscreteItem(attributeSet[i], (String) data[index][i]), i);
         return tuple;
     }
+
+    /**
+     * Esegue il passo 1 dell'algoritmo KMeans. Sceglie k centroidi in modo casuale
+     * @param k il numero di Cluster da generare
+     * @return un array di k int che rappresentano gli indici di riga delle transazioni scelte come centroidi
+     */
 
     int[] sampling(int k) {
         int[] centroidIndexes = new int[k];
@@ -205,6 +216,13 @@ public class Data {
         return centroidIndexes;
     }
 
+    /**
+     * Verifica se due transazioni sono uguali
+     * @param i indice della prima transazione
+     * @param j indice della seconda transazione
+     * @return true se le due transazioni sono uguali, false altrimenti
+     */
+
     private boolean compare(int i, int j) {
         Tuple t1 = getItemSet(i), t2 = getItemSet(j);
         for (int k = 0; k < t1.getLength(); k++)
@@ -213,11 +231,24 @@ public class Data {
         return true;
     }
 
+    /**
+     * Calcola il centroide rispetto ad un attributo, dato un ArraySet di indici di riga
+     * @param idList l'ArraySet di indici da considerare
+     * @param attribute l'attributo sul cui calcolare il centroide
+     * @return il valore del centroide rispetto ad attribute
+     */
+
     Object computePrototype(ArraySet idList, Attribute attribute) {
         return computePrototype(idList, (DiscreteAttribute) attribute);
     }
 
-    String computePrototype(ArraySet idList, DiscreteAttribute attribute) {
+    /**
+     * Determina il valore che occorre più frequentemente per attribute nel sottoinsieme di dati individuato da idList
+     * @param idList l'ArraySet di indici da considerare
+     * @param attribute l'attributo sul cui calcolare il centroide
+     * @return il valore del centroide rispetto ad attribute
+     */
+    private String computePrototype(ArraySet idList, DiscreteAttribute attribute) {
         Map<Object, Integer> counterMap = new HashMap<>();
         for (int i = 0; i < attribute.getNumberOfDistinctValues(); i++) {
             counterMap.put(attribute.getValue(i), attribute.frequency(this, idList, attribute.getValue(i)));
