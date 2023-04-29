@@ -1,13 +1,38 @@
+/**
+ * KmeansMiner.java
+ * <p>
+ * Classe che implementa l'algoritmo di clustering K-means
+ *
+ * @author Claudio De Marzo
+ */
 public class KmeansMiner {
+    /**
+     * Oggetto che contiene l'insieme dei cluster
+     */
     private ClusterSet C;
+
+    /**
+     * Costruttore della classe KmeansMiner
+     * @param k il numero di cluster da creare
+     */
 
     KmeansMiner(int k) {
         C = new ClusterSet(k);
     }
 
+    /**
+     * Restituisce l'insieme dei cluster
+     * @return l'insieme dei cluster
+     */
     ClusterSet getC() {
         return C;
     }
+
+    /**
+     * Esegue l'algoritmo di clustering K-means
+     * @param data il dataset su cui eseguire l'algoritmo
+     * @return il numero di iterazioni necessarie per raggiungere la convergenza
+     */
 
     int kmeans(Data data) {
         int numberOfIterations = 0; //STEP 1
