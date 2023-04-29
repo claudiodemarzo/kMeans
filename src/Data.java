@@ -205,26 +205,27 @@ public class Data {
         return centroidIndexes;
     }
 
-    private boolean compare(int i, int j){
+    private boolean compare(int i, int j) {
         Tuple t1 = getItemSet(i), t2 = getItemSet(j);
-        for(int k = 0; k < t1.getLength(); k++)
-            if(!t1.get(k).equals(t2.get(k)))
+        for (int k = 0; k < t1.getLength(); k++)
+            if (!t1.get(k).equals(t2.get(k)))
                 return false;
         return true;
     }
 
-    Object computePrototype(ArraySet idList, Attribute attribute){
+    Object computePrototype(ArraySet idList, Attribute attribute) {
         return computePrototype(idList, (DiscreteAttribute) attribute);
     }
-    String computePrototype(ArraySet idList, DiscreteAttribute attribute){
+
+    String computePrototype(ArraySet idList, DiscreteAttribute attribute) {
         Map<Object, Integer> counterMap = new HashMap<>();
-        for(int i = 0; i<attribute.getNumberOfDistinctValues(); i++){
+        for (int i = 0; i < attribute.getNumberOfDistinctValues(); i++) {
             counterMap.put(attribute.getValue(i), attribute.frequency(this, idList, attribute.getValue(i)));
         }
         Object proto = null;
         int maxVal = Integer.MIN_VALUE;
-        for(Map.Entry<Object, Integer> entry : counterMap.entrySet())
-            if(entry.getValue() > maxVal){
+        for (Map.Entry<Object, Integer> entry : counterMap.entrySet())
+            if (entry.getValue() > maxVal) {
                 maxVal = entry.getValue();
                 proto = entry.getKey();
             }

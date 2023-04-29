@@ -1,4 +1,4 @@
-public class DiscreteItem extends Item{
+public class DiscreteItem extends Item {
     DiscreteItem(Attribute attribute, Object value) {
         super(attribute, value);
     }

@@ -17,7 +17,8 @@ abstract class Attribute {
 
     /**
      * Costruttore della classe Attribute
-     * @param name il nome dell'attributo
+     *
+     * @param name  il nome dell'attributo
      * @param index l'indice dell'attributo
      */
     Attribute(String name, int index) {
@@ -27,6 +28,7 @@ abstract class Attribute {
 
     /**
      * Restituisce il nome dell'attributo
+     *
      * @return il nome dell'attributo
      */
     String getName() {
@@ -35,6 +37,7 @@ abstract class Attribute {
 
     /**
      * Restituisce l'indice dell'attributo
+     *
      * @return l'indice dell'attributo
      */
     int getIndex() {
@@ -43,10 +46,11 @@ abstract class Attribute {
 
     /**
      * Restituisce una rappresentazione testuale dell'attributo
+     *
      * @return una rappresentazione testuale dell'attributo, che coincide con il nome dell'attributo
      */
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 

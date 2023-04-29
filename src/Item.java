@@ -17,13 +17,13 @@ public abstract class Item {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return value.toString();
     }
 
     abstract double distance(Object a);
 
-    void update(Data data, ArraySet clusteredData){
+    void update(Data data, ArraySet clusteredData) {
         value = data.computePrototype(clusteredData, attribute);
     }
 }

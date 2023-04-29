@@ -27,7 +27,7 @@ public class ClusterSet {
         Cluster nearest = null;
         double distance = Double.MAX_VALUE;
         for (int i = 0; i < this.i; i++) {
-            if (tuple.getDistance(C[i].getCentroid()) < distance){
+            if (tuple.getDistance(C[i].getCentroid()) < distance) {
                 nearest = C[i];
                 distance = tuple.getDistance(C[i].getCentroid());
             }
