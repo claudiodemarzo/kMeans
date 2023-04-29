@@ -3,7 +3,7 @@
  * <p>
  * Classe che modella un cluster
  *
- * @Author Dott.ssa Appice A.
+ * @author Dott.ssa Appice A.
  */
 public class Cluster {
     /**
