@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -116,23 +117,28 @@ public class Data {
         outLookValues[0] = "overcast";
         outLookValues[1] = "rain";
         outLookValues[2] = "sunny";
+        Arrays.sort(outLookValues);
         attributeSet[0] = new DiscreteAttribute("Outlook", 0, outLookValues);
 
         temperatureValues[0] = "cool";
         temperatureValues[1] = "hot";
         temperatureValues[2] = "mild";
+        Arrays.sort(temperatureValues);
         attributeSet[1] = new DiscreteAttribute("Temperature", 1, temperatureValues);
 
         humidityValues[0] = "high";
         humidityValues[1] = "normal";
+        Arrays.sort(humidityValues);
         attributeSet[2] = new DiscreteAttribute("Humidity", 2, humidityValues);
 
         windValues[0] = "strong";
         windValues[1] = "weak";
+        Arrays.sort(windValues);
         attributeSet[3] = new DiscreteAttribute("Wind", 3, windValues);
 
         playValues[0] = "no";
         playValues[1] = "yes";
+        Arrays.sort(playValues);
         attributeSet[4] = new DiscreteAttribute("Play", 4, playValues);
     }
 
