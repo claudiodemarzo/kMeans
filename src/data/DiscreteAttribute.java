@@ -1,7 +1,11 @@
+package data;
+
+import utility.ArraySet;
+
 /**
- * DiscreteAttribute.java
+ * data.DiscreteAttribute.java
  * <p>
- * Classe che rappresenta un attributo discreto (categorico). Questa classe estende la classe astratta Attribute e include metodi per la gestione dei valori possibili dell'attributo.
+ * Classe che rappresenta un attributo discreto (categorico). Questa classe estende la classe astratta data.Attribute e include metodi per la gestione dei valori possibili dell'attributo.
  *
  * @author Claudio De Marzo
  * @see Attribute
@@ -14,7 +18,7 @@ class DiscreteAttribute extends Attribute {
     private String[] values;
 
     /**
-     * Costruttore della classe DiscreteAttribute
+     * Costruttore della classe data.DiscreteAttribute
      *
      * @param name   Il nome dell'attributo
      * @param index  L'indice dell'attributo
