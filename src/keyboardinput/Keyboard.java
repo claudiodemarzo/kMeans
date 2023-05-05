@@ -241,7 +241,7 @@ public class Keyboard {
 		String token = getNextToken();
 		float value;
 		try {
-			value = (Float.parseFloat(token)));
+			value = (Float.parseFloat(token));
 		} catch (Exception exception) {
 			error("Error reading float data, NaN value returned.");
 			value = Float.NaN;
