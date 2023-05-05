@@ -1,5 +1,7 @@
+package data;
+
 /**
- * Tuple.java
+ * data.Tuple.java
  * <p>
  * Ckasse che modella una Tupla, una sequenza di coppie Attributo-Valore
  *
@@ -10,12 +12,12 @@
 public class Tuple {
 
     /**
-     * Array di Item che rappresenta la tupla
+     * Array di data.Item che rappresenta la tupla
      */
     private Item[] tuple;
 
     /**
-     * Costruttore della classe Tuple
+     * Costruttore della classe data.Tuple
      * @param size la dimensione della tupla
      */
 
@@ -28,7 +30,7 @@ public class Tuple {
      * @return la dimensione della tupla
      */
 
-    int getLength() {
+    public int getLength() {
         return tuple.length;
     }
 
@@ -38,7 +40,7 @@ public class Tuple {
      * @return l'i-esimo item della tupla
      */
 
-    Item get(int i) {
+    public Item get(int i) {
         return tuple[i];
     }
 
@@ -58,7 +60,7 @@ public class Tuple {
      * @return la distanza tra le due tuple
      */
 
-    double getDistance(Tuple obj) {
+    public double getDistance(Tuple obj) {
         double distance = 0;
         for (int i = 0; i < tuple.length; i++) {
             distance += get(i).distance(obj.get(i).getValue());
@@ -72,7 +74,7 @@ public class Tuple {
      * @param clusteredData l'insieme di tuple rispetto alle quali calcolare la distanza
      * @return la media delle distanze
      */
-    double avgDistance(Data data, int[] clusteredData) {
+    public double avgDistance(Data data, int[] clusteredData) {
         double p = 0.0, sumD = 0.0;
         for (int i = 0; i < clusteredData.length; i++) {
             double d = getDistance(data.getItemSet(clusteredData[i]));

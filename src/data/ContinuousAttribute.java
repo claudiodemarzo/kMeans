@@ -1,7 +1,9 @@
+package data;
+
 /**
- * ContinuousAttribute.java
+ * data.ContinuousAttribute.java
  * <p>
- * Rappresenta un attributo continuo (numerico). Questa classe estende la classe astratta Attribute e include metodi per la normalizzazione dell'attributo nell'Intervallo [0,1] al fine da rendere confrontabili attributi aventi domini diversi.
+ * Rappresenta un attributo continuo (numerico). Questa classe estende la classe astratta data.Attribute e include metodi per la normalizzazione dell'attributo nell'Intervallo [0,1] al fine da rendere confrontabili attributi aventi domini diversi.
  *
  * @author Claudio De Marzo
  * @see Attribute
@@ -17,7 +19,7 @@ class ContinuousAttribute extends Attribute {
     private double min;
 
     /**
-     * Costruttore della classe ContinuousAttribute
+     * Costruttore della classe data.ContinuousAttribute
      *
      * @param name  Il nome dell'attributo
      * @param index L'indice dell'attributo

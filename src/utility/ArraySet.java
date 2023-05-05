@@ -1,7 +1,9 @@
+package utility;
+
 import java.util.Arrays;
 
 /**
- * ArraySet.java
+ * utility.ArraySet.java
  * <p>
  * Classe utilitaria che implementa un insieme di interi tramite un array di booleani.
  * Una volta istanziata la classe, vi è all'interno un array di booleani ed un intero che rappresenta la dimensione dell'insieme.
@@ -24,7 +26,7 @@ public class ArraySet {
     /**
      * Costruttore di default. Inizializza l'array di boolean a 50 elementi, tutti false.
      */
-    ArraySet() {
+    public ArraySet() {
         set = new boolean[50];
         for (int i = 0; i < set.length; i++)
             set[i] = false;
@@ -34,9 +36,9 @@ public class ArraySet {
      *  Aggiunge un indice, impostando a true l'elemento set[i]. Se l'indice è maggiore della dimensione dell'insieme, allora l'insieme viene ingrandito.
      *
      * @param i l'indice da aggiungere all'insieme
-     * @return true se aggiungendo l'elemento si varia lo stato dell'oggetto ArraySet, false altrimenti
+     * @return true se aggiungendo l'elemento si varia lo stato dell'oggetto utility.ArraySet, false altrimenti
      */
-    boolean add(int i) {
+    public boolean add(int i) {
         if (i >= set.length) {
             //enlarge the set
             boolean[] temp = new boolean[set.length * 2];
@@ -57,9 +59,9 @@ public class ArraySet {
      *  Rimuove un indice, impostando a false l'elemento set[i].
      *
      * @param i L'indice da rimuovere dall'insieme
-     * @return true se rimuovendo l'elemento si varia lo stato dell'oggetto ArraySet, false altrimenti
+     * @return true se rimuovendo l'elemento si varia lo stato dell'oggetto utility.ArraySet, false altrimenti
      */
-    boolean delete(int i) {
+    public boolean delete(int i) {
         if (i < size) {
             boolean deleted = set[i];
             set[i] = false;
@@ -81,17 +83,17 @@ public class ArraySet {
      * @param i L'indice da controllare
      * @return true se l'insieme contiene l'indice i, false altrimenti
      */
-    boolean get(int i) {
+    public boolean get(int i) {
         return set[i];
     }
 
     /**
-     * Converte l'oggetto ArraySet in un array di interi, contenente gli indici degli elementi dell'insieme, ovvero le posizioni dell'array che sono state settate a true.
+     * Converte l'oggetto utility.ArraySet in un array di interi, contenente gli indici degli elementi dell'insieme, ovvero le posizioni dell'array che sono state settate a true.
      *
-     * @return L'ArraySet convertito in int[]
+     * @return L'utility.ArraySet convertito in int[]
      */
 
-    int[] toArray() {
+    public int[] toArray() {
         int a[] = new int[0];
         for (int i = 0; i < size; i++) {
             if (get(i)) {

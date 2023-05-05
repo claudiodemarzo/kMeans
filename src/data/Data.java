@@ -1,12 +1,16 @@
+package data;
+
+import utility.ArraySet;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 /**
- * Data.java
+ * data.Data.java
  * <p>
- * Classe che rappresenta un insieme di esempi. Questa classe contiene un array di oggetti Object[][] che rappresenta i dati, un array di attributi Attribute[] e il numero di esempi.
+ * Classe che rappresenta un insieme di esempi. Questa classe contiene un array di oggetti Object[][] che rappresenta i dati, un array di attributi data.Attribute[] e il numero di esempi.
  *
  * @author Claudio De Marzo
  */
@@ -25,7 +29,7 @@ public class Data {
     private Attribute[] attributeSet;
 
     /**
-     * Costruttore della classe Data. Costruisce il dataset attraverso l'inizializzazione de l'array di oggetti Object[][] data, il numero di esempi numberOfExamples e l'array di attributi attributeSet.
+     * Costruttore della classe data.Data. Costruisce il dataset attraverso l'inizializzazione de l'array di oggetti Object[][] data, il numero di esempi numberOfExamples e l'array di attributi attributeSet.
      */
     Data() {
         data = new Object[14][5];
@@ -147,7 +151,7 @@ public class Data {
      *
      * @return Il numero di esempi
      */
-    int getNumberOfExamples() {
+    public int getNumberOfExamples() {
         return numberOfExamples;
     }
 
@@ -156,14 +160,14 @@ public class Data {
      *
      * @return Il numero degli attributi
      */
-    int getNumberOfExplanatoryAttributes() {
+    public int getNumberOfExplanatoryAttributes() {
         return attributeSet.length;
     }
 
     /**
      * Restituisce lo schema del dataset
      *
-     * @return Array di Attribute che rappresenta lo schema del dataset
+     * @return Array di data.Attribute che rappresenta lo schema del dataset
      */
     Attribute[] getAttributeSchema() {
         return attributeSet;
@@ -176,7 +180,7 @@ public class Data {
      * @param attributeIndex Indice dell'attributo
      * @return Il valore dell'attributo
      */
-    Object getAttributeValue(int exampleIndex, int attributeIndex) {
+    public Object getAttributeValue(int exampleIndex, int attributeIndex) {
         return data[exampleIndex][attributeIndex];
     }
 
@@ -185,7 +189,7 @@ public class Data {
      * @param index l'indice dell'esempio
      * @return la Tupla che contiene i valori degli attributi di un esempio
      */
-    Tuple getItemSet(int index) {
+    public Tuple getItemSet(int index) {
         Tuple tuple = new Tuple(attributeSet.length);
         for (int i = 0; i < attributeSet.length; i++)
             tuple.add(new DiscreteItem(attributeSet[i], (String) data[index][i]), i);
@@ -194,11 +198,11 @@ public class Data {
 
     /**
      * Esegue il passo 1 dell'algoritmo KMeans. Sceglie k centroidi in modo casuale
-     * @param k il numero di Cluster da generare
+     * @param k il numero di mining.Cluster da generare
      * @return un array di k int che rappresentano gli indici di riga delle transazioni scelte come centroidi
      */
 
-    int[] sampling(int k) {
+    public int[] sampling(int k) {
         int[] centroidIndexes = new int[k];
         //choose k random different centroids in data.
         Random rand = new Random();
@@ -238,8 +242,8 @@ public class Data {
     }
 
     /**
-     * Calcola il centroide rispetto ad un attributo, dato un ArraySet di indici di riga
-     * @param idList l'ArraySet di indici da considerare
+     * Calcola il centroide rispetto ad un attributo, dato un utility.ArraySet di indici di riga
+     * @param idList l'utility.ArraySet di indici da considerare
      * @param attribute l'attributo sul cui calcolare il centroide
      * @return il valore del centroide rispetto ad attribute
      */
@@ -250,7 +254,7 @@ public class Data {
 
     /**
      * Determina il valore che occorre più frequentemente per attribute nel sottoinsieme di dati individuato da idList
-     * @param idList l'ArraySet di indici da considerare
+     * @param idList l'utility.ArraySet di indici da considerare
      * @param attribute l'attributo sul cui calcolare il centroide
      * @return il valore del centroide rispetto ad attribute
      */

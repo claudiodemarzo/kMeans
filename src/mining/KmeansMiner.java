@@ -1,5 +1,11 @@
+package mining;
+
+import data.Data;
+import mining.Cluster;
+import mining.ClusterSet;
+
 /**
- * KmeansMiner.java
+ * mining.KmeansMiner.java
  * <p>
  * Classe che implementa l'algoritmo di clustering K-means
  *
@@ -12,11 +18,11 @@ public class KmeansMiner {
     private ClusterSet C;
 
     /**
-     * Costruttore della classe KmeansMiner
+     * Costruttore della classe mining.KmeansMiner
      * @param k il numero di cluster da creare
      */
 
-    KmeansMiner(int k) {
+    public KmeansMiner(int k) {
         C = new ClusterSet(k);
     }
 
@@ -24,7 +30,7 @@ public class KmeansMiner {
      * Restituisce l'insieme dei cluster
      * @return l'insieme dei cluster
      */
-    ClusterSet getC() {
+    public ClusterSet getC() {
         return C;
     }
 
@@ -34,7 +40,7 @@ public class KmeansMiner {
      * @return il numero di iterazioni necessarie per raggiungere la convergenza
      */
 
-    int kmeans(Data data) {
+    public int kmeans(Data data) {
         int numberOfIterations = 0; //STEP 1
         C.initializeCentroids(data);
         boolean changedCluster = false;

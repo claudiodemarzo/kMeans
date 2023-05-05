@@ -1,5 +1,11 @@
+package mining;
+
+import data.Data;
+import data.Tuple;
+import utility.ArraySet;
+
 /**
- * Cluster.java
+ * mining.Cluster.java
  * <p>
  * Classe che modella un cluster
  *
@@ -17,7 +23,7 @@ public class Cluster {
     private ArraySet clusteredData;
 
     /**
-     * Costruttore della classe Cluster
+     * Costruttore della classe mining.Cluster
      * @param centroid il centroide del cluster da costruire
      */
 

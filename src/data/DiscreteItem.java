@@ -1,5 +1,7 @@
+package data;
+
 /**
- * DiscreteItem.java
+ * data.DiscreteItem.java
  * <p>
  * Classe che rappresenta una coppia attributo-valore discreto
  *
@@ -9,7 +11,7 @@
 public class DiscreteItem extends Item {
 
     /**
-     * Costruttore della classe DiscreteItem
+     * Costruttore della classe data.DiscreteItem
      * @param attribute l'attributo dell'item
      * @param value il valore dell'item
      */

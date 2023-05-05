@@ -1,5 +1,7 @@
+package data;
+
 /**
- * Attribute.java
+ * data.Attribute.java
  * <p>
  * Classe astratta che rappresenta un attributo
  *
@@ -16,7 +18,7 @@ abstract class Attribute {
     private int index;
 
     /**
-     * Costruttore della classe Attribute
+     * Costruttore della classe data.Attribute
      *
      * @param name  il nome dell'attributo
      * @param index l'indice dell'attributo

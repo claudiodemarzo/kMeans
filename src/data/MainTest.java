@@ -1,5 +1,9 @@
+package data;
+
+import mining.KmeansMiner;
+
 /**
- * MainTest.java
+ * data.MainTest.java
  * <p>
  * Entry point del programma.
  * @author Dott.ssa Appice A.

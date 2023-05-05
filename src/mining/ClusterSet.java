@@ -1,7 +1,12 @@
+package mining;
+
+import data.Data;
+import data.Tuple;
+
 /**
- * ClusterSet.java
+ * mining.ClusterSet.java
  * <p>
- * Classe che modella un insieme di Cluster
+ * Classe che modella un insieme di mining.Cluster
  *
  * @see Cluster
  * @author Claudio De Marzo
@@ -9,7 +14,7 @@
 public class ClusterSet {
 
     /**
-     * Array di Cluster
+     * Array di mining.Cluster
      */
     private Cluster[] C;
 
@@ -19,7 +24,7 @@ public class ClusterSet {
     private int i = 0;
 
     /**
-     * Costruttore della classe ClusterSet
+     * Costruttore della classe mining.ClusterSet
      * @param k il numero di cluster contenuti nel Set
      */
 
@@ -29,7 +34,7 @@ public class ClusterSet {
 
     /**
      * Aggiunge un cluster all'insieme
-     * @param c il Cluster da aggiungere
+     * @param c il mining.Cluster da aggiungere
      */
 
     void add(Cluster c) {
@@ -48,7 +53,7 @@ public class ClusterSet {
     }
 
     /**
-     * Sceglie i centroidi dal dataset e inizializza i cluster nel ClusterSet
+     * Sceglie i centroidi dal dataset e inizializza i cluster nel mining.ClusterSet
      * @param data il dataset
      */
 
@@ -109,7 +114,7 @@ public class ClusterSet {
     public String toString() {
         String s = "";
         for (int i = 0; i < this.i; i++) {
-            s += "Cluster " + i + " centroid: " + C[i].getCentroid().toString();
+            s += "mining.Cluster " + i + " centroid: " + C[i].getCentroid().toString();
         }
         return s;
     }
