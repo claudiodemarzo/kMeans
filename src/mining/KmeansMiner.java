@@ -1,6 +1,7 @@
 package mining;
 
 import data.Data;
+import data.OutOfRangeSampleSize;
 import mining.Cluster;
 import mining.ClusterSet;
 
@@ -40,7 +41,7 @@ public class KmeansMiner {
      * @return il numero di iterazioni necessarie per raggiungere la convergenza
      */
 
-    public int kmeans(Data data) {
+    public int kmeans(Data data) throws OutOfRangeSampleSize {
         int numberOfIterations = 0; //STEP 1
         C.initializeCentroids(data);
         boolean changedCluster = false;

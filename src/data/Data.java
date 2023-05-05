@@ -27,11 +27,12 @@ public class Data {
      * Array di attributi
      */
     private Attribute[] attributeSet;
+    private int distinctTuples;
 
     /**
      * Costruttore della classe data.Data. Costruisce il dataset attraverso l'inizializzazione de l'array di oggetti Object[][] data, il numero di esempi numberOfExamples e l'array di attributi attributeSet.
      */
-    Data() {
+    public Data() {
         data = new Object[14][5];
 
         data[0][0] = "sunny";
@@ -144,6 +145,8 @@ public class Data {
         playValues[1] = "yes";
         Arrays.sort(playValues);
         attributeSet[4] = new DiscreteAttribute("Play", 4, playValues);
+
+        distinctTuples = countDistinctTuples();
     }
 
     /**
@@ -198,11 +201,12 @@ public class Data {
 
     /**
      * Esegue il passo 1 dell'algoritmo KMeans. Sceglie k centroidi in modo casuale
-     * @param k il numero di mining.Cluster da generare
+     * @param k il numero di centroidi da generare
      * @return un array di k int che rappresentano gli indici di riga delle transazioni scelte come centroidi
      */
 
-    public int[] sampling(int k) {
+    public int[] sampling(int k) throws OutOfRangeSampleSize{
+        if(k <= 0 || k > distinctTuples) throw new OutOfRangeSampleSize("Il numero dei centroidi deve essere compreso tra 1 e " + distinctTuples + ".");
         int[] centroidIndexes = new int[k];
         //choose k random different centroids in data.
         Random rand = new Random();
@@ -295,4 +299,14 @@ public class Data {
         }
         return s;
     }
+
+    private int countDistinctTuples() {
+        int count = 0;
+        for (int i = 0; i < getNumberOfExamples(); i++)
+            for (int j = i + 1; j < getNumberOfExamples(); j++)
+                if (compare(i, j))
+                    count++;
+        return getNumberOfExamples() - count;
+    }
+
 }

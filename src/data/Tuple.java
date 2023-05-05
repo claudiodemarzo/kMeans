@@ -80,7 +80,7 @@ public class Tuple {
             double d = getDistance(data.getItemSet(clusteredData[i]));
             sumD += d;
         }
-        p = sumD / clusteredData.length;
+        p = clusteredData.length == 0 ? 0 : sumD / clusteredData.length;
         return p;
     }
 
