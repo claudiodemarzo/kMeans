@@ -56,7 +56,7 @@ public class Cluster {
     /**
      * Aggiunge una transazione al cluster
      * @param id l'id (dal dataset) della transazione da aggiungere
-     * @return true se la transazione è cambiata di cluster, false altrimenti
+     * @return true se la transazione e cambiata di cluster, false altrimenti
      */
     boolean addData(int id) {
         return clusteredData.add(id);
@@ -64,9 +64,9 @@ public class Cluster {
     }
 
     /**
-     * Verifica se una transazione è clusterizzata nell'array corrente
+     * Verifica se una transazione e clusterizzata nell'array corrente
      * @param id l'id della transazione da verificare
-     * @return true se la transazione è clusterizzata nell'array corrente, false altrimenti
+     * @return true se la transazione e clusterizzata nell'array corrente, false altrimenti
      */
     boolean contain(int id) {
         return clusteredData.get(id);

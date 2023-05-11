@@ -39,6 +39,7 @@ public class KmeansMiner {
      * Esegue l'algoritmo di clustering K-means
      * @param data il dataset su cui eseguire l'algoritmo
      * @return il numero di iterazioni necessarie per raggiungere la convergenza
+     * @throws OutOfRangeSampleSize se il numero di cluster e maggiore del numero di transazioni nel dataset
      */
 
     public int kmeans(Data data) throws OutOfRangeSampleSize {

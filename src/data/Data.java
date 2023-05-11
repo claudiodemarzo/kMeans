@@ -203,6 +203,7 @@ public class Data {
      * Esegue il passo 1 dell'algoritmo KMeans. Sceglie k centroidi in modo casuale
      * @param k il numero di centroidi da generare
      * @return un array di k int che rappresentano gli indici di riga delle transazioni scelte come centroidi
+     * @throws OutOfRangeSampleSize se k non è compreso tra 1 e il numero di transazioni
      */
 
     public int[] sampling(int k) throws OutOfRangeSampleSize{
