@@ -218,7 +218,7 @@ public class Data {
             do {
                 found = false;
                 c = rand.nextInt(getNumberOfExamples());
-                // verify that centroid[c] is not equal to a centroide already stored in CentroidIndexes
+            // verify that centroid[c] is not equal to a centroide already stored in CentroidIndexes
                 for (int j = 0; j < i; j++)
                     if (compare(centroidIndexes[j], c)) {
                         found = true;
@@ -301,11 +301,16 @@ public class Data {
         return s;
     }
 
+    /**
+     * Restituisce il numero di tuple distinte nel dataset
+     * @return il numero di tuple distinte nel dataset
+     */
+
     private int countDistinctTuples() {
         int count = 0;
         for (int i = 0; i < getNumberOfExamples(); i++)
             for (int j = i + 1; j < getNumberOfExamples(); j++)
-                if (compare(i, j))
+                if (!compare(i, j))
                     count++;
         return getNumberOfExamples() - count;
     }
