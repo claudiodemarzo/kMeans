@@ -306,13 +306,19 @@ public class Data {
      * @return il numero di tuple distinte nel dataset
      */
 
+    //crea un metodo chiamato countDistinctTuples che conta il numero di tuple che sono uniche nel dataset utilizzando il metodo compare()
     private int countDistinctTuples() {
         int count = 0;
-        for (int i = 0; i < getNumberOfExamples(); i++)
-            for (int j = i + 1; j < getNumberOfExamples(); j++)
-                if (!compare(i, j))
-                    count++;
-        return getNumberOfExamples() - count;
+        for (int i = 0; i < getNumberOfExamples(); i++) {
+            boolean found = false;
+            for (int j = 0; j < i; j++)
+                if (compare(i, j)) {
+                    found = true;
+                    break;
+                }
+            if (!found) count++;
+        }
+        return count;
     }
 
 }
