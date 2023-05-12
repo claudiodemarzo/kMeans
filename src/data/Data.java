@@ -310,17 +310,47 @@ public class Data {
         return s;
     }
 
+    /**
+     * Data.Example
+     * Classe che rappresenta un esempio del dataset
+     * Implementa l'interfaccia Comparable
+     *
+     * @see Comparable
+     * @see Data
+     */
     class Example implements Comparable<Example> {
 
+        /**
+         * Lista di oggetti che rappresentano i valori degli attributi dell'esempio
+         */
         private final List<Object> example = new ArrayList<>();
 
+        /**
+         * Aggiunge un oggetto alla lista
+         *
+         * @param o l'oggetto da aggiungere
+         */
         private void add(Object o) {
             example.add(o);
         }
 
+        /**
+         * Restituisce l'oggetto in posizione i
+         *
+         * @param i la posizione dell'oggetto da restituire
+         * @return l'oggetto in posizione i
+         */
         private Object get(int i) {
             return example.get(i);
         }
+
+        /**
+         * Effettua un confronto tra due esempi. Restituisce 0 se sono uguali, altrimenti il risultato del confronto tra i primi due valori diversi
+         *
+         * @param o the object to be compared.
+         * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
+         * @see Comparable#compareTo(Object)
+         */
 
         @Override
         public int compareTo(Example o) {
@@ -332,6 +362,11 @@ public class Data {
             return 0;
         }
 
+        /**
+         * Restituisce la rappresentazione in stringa dell'esempio
+         *
+         * @return la rappresentazione in stringa dell'esempio
+         */
         @Override
         public String toString() {
             String s = "[";
