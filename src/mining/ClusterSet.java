@@ -17,7 +17,7 @@ public class ClusterSet {
     /**
      * Array di mining.Cluster
      */
-    private Cluster[] C;
+    private final Cluster[] C;
 
     /**
      * Indice dell'ultima posizione di C libero
@@ -60,8 +60,8 @@ public class ClusterSet {
 
     void initializeCentroids(Data data) throws OutOfRangeSampleSize {
         int[] centroidIndexes = data.sampling(C.length);
-        for (int i = 0; i < centroidIndexes.length; i++) {
-            Tuple centroidI = data.getItemSet(centroidIndexes[i]);
+        for (int centroidIndex : centroidIndexes) {
+            Tuple centroidI = data.getItemSet(centroidIndex);
             add(new Cluster(centroidI));
         }
     }

@@ -16,7 +16,7 @@ public class KmeansMiner {
     /**
      * Oggetto che contiene l'insieme dei cluster
      */
-    private ClusterSet C;
+    private final ClusterSet C;
 
     /**
      * Costruttore della classe mining.KmeansMiner
@@ -45,7 +45,7 @@ public class KmeansMiner {
     public int kmeans(Data data) throws OutOfRangeSampleSize {
         int numberOfIterations = 0; //STEP 1
         C.initializeCentroids(data);
-        boolean changedCluster = false;
+        boolean changedCluster;
         do {
             numberOfIterations++;
             //STEP 2

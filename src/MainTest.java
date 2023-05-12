@@ -22,7 +22,6 @@ public class MainTest {
         System.out.println(data);
         boolean repeat;
         do {
-            repeat = false;
             int k;
             boolean err;
             KmeansMiner kmeans;

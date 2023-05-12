@@ -11,11 +11,11 @@ abstract class Attribute {
     /**
      * Nome dell'attributo
      */
-    private String name;
+    private final String name;
     /**
      * Indice dell'attributo
      */
-    private int index;
+    private final int index;
 
     /**
      * Costruttore della classe data.Attribute

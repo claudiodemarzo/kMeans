@@ -14,7 +14,7 @@ public class Tuple {
     /**
      * Array di data.Item che rappresenta la tupla
      */
-    private Item[] tuple;
+    private final Item[] tuple;
 
     /**
      * Costruttore della classe data.Tuple
@@ -74,10 +74,10 @@ public class Tuple {
      * @param clusteredData l'insieme di tuple rispetto alle quali calcolare la distanza
      * @return la media delle distanze
      */
-    public double avgDistance(Data data, int[] clusteredData) {
-        double p = 0.0, sumD = 0.0;
-        for (int i = 0; i < clusteredData.length; i++) {
-            double d = getDistance(data.getItemSet(clusteredData[i]));
+    public double avgDistance(Data data, Integer[] clusteredData) {
+        double p, sumD = 0.0;
+        for (int clusteredDatum : clusteredData) {
+            double d = getDistance(data.getItemSet(clusteredDatum));
             sumD += d;
         }
         p = clusteredData.length == 0 ? 0 : sumD / clusteredData.length;

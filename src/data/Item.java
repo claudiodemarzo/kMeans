@@ -1,11 +1,12 @@
 package data;
 
-import utility.ArraySet;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * data.Item.java
  * <p>
- * Classe che modella una coppia generica attrivuto-valore
+ * Classe che modella una coppia generica attributo-valore
  *
  * @author Claudio De Marzo
  */
@@ -13,7 +14,7 @@ public abstract class Item {
     /**
      * Attributo dell'item
      */
-    private Attribute attribute;
+    private final Attribute attribute;
 
     /**
      * Valore dell'item
@@ -72,7 +73,7 @@ public abstract class Item {
      * @param data il dataset
      * @param clusteredData l'insieme degli indici delle transazioni appartenenti al cluster in considerazione
      */
-    public void update(Data data, ArraySet clusteredData) {
+    public void update(Data data, Set<Integer> clusteredData) {
         value = data.computePrototype(clusteredData, attribute);
     }
 }

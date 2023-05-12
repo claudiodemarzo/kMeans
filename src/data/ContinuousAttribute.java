@@ -12,11 +12,11 @@ class ContinuousAttribute extends Attribute {
     /**
      * Valore massimo del dominio dell'attributo
      */
-    private double max;
+    private final double max;
     /**
      * Valore minimo del dominio dell'attributo
      */
-    private double min;
+    private final double min;
 
     /**
      * Costruttore della classe data.ContinuousAttribute

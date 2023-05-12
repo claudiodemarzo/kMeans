@@ -1,152 +1,155 @@
 package data;
 
-import utility.ArraySet;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
- * data.Data.java
+ * Data.java
  * <p>
- * Classe che rappresenta un insieme di esempi. Questa classe contiene un array di oggetti Object[][] che rappresenta i dati, un array di attributi data.Attribute[] e il numero di esempi.
+ * Classe che rappresenta un insieme di esempi. Questa classe contiene un Lista di oggetti Example che rappresenta il dataset, una Lista di Attribute e il numero di esempi.
  *
  * @author Claudio De Marzo
  */
 public class Data {
     /**
-     * Array di oggetti Object[][] che rappresenta il dataset
+     * Lista di oggetti Example che rappresenta il dataset
      */
-    private Object[][] data;
+    private final List<Example> data;
     /**
      * Numero di esempi
      */
-    private int numberOfExamples;
+    private final int numberOfExamples;
     /**
-     * Array di attributi
+     * Lista degli attributi
      */
-    private Attribute[] attributeSet;
-    private int distinctTuples;
+    private final List<Attribute> attributeSet;
 
     /**
-     * Costruttore della classe data.Data. Costruisce il dataset attraverso l'inizializzazione de l'array di oggetti Object[][] data, il numero di esempi numberOfExamples e l'array di attributi attributeSet.
+     * Costruttore della classe Data. Costruisce il dataset attraverso l'inizializzazione della Lista di oggetti Examples data, il numero di esempi numberOfExamples e la lista di attributi attributeSet.
      */
     public Data() {
-        data = new Object[14][5];
+        Example[] examples = new Example[14];
+        for (int i = 0; i < examples.length; i++) {
+            examples[i] = new Example();
+        }
 
-        data[0][0] = "sunny";
-        data[1][0] = "sunny";
-        data[2][0] = "overcast";
-        data[3][0] = "rain";
-        data[4][0] = "rain";
-        data[5][0] = "rain";
-        data[6][0] = "overcast";
-        data[7][0] = "sunny";
-        data[8][0] = "sunny";
-        data[9][0] = "rain";
-        data[10][0] = "sunny";
-        data[11][0] = "overcast";
-        data[12][0] = "overcast";
-        data[13][0] = "rain";
+        examples[0].add("sunny");
+        examples[0].add("hot");
+        examples[0].add("high");
+        examples[0].add("weak");
+        examples[0].add("no");
 
-        data[0][1] = "hot";
-        data[1][1] = "hot";
-        data[2][1] = "hot";
-        data[3][1] = "mild";
-        data[4][1] = "cool";
-        data[5][1] = "cool";
-        data[6][1] = "cool";
-        data[7][1] = "mild";
-        data[8][1] = "cool";
-        data[9][1] = "mild";
-        data[10][1] = "mild";
-        data[11][1] = "mild";
-        data[12][1] = "hot";
-        data[13][1] = "mild";
+        examples[1].add("sunny");
+        examples[1].add("hot");
+        examples[1].add("high");
+        examples[1].add("strong");
+        examples[1].add("no");
 
-        data[0][2] = "high";
-        data[1][2] = "high";
-        data[2][2] = "high";
-        data[3][2] = "high";
-        data[4][2] = "normal";
-        data[5][2] = "normal";
-        data[6][2] = "normal";
-        data[7][2] = "high";
-        data[8][2] = "normal";
-        data[9][2] = "normal";
-        data[10][2] = "normal";
-        data[11][2] = "high";
-        data[12][2] = "normal";
-        data[13][2] = "high";
+        examples[2].add("overcast");
+        examples[2].add("hot");
+        examples[2].add("high");
+        examples[2].add("weak");
+        examples[2].add("yes");
 
+        examples[3].add("rain");
+        examples[3].add("mild");
+        examples[3].add("high");
+        examples[3].add("weak");
+        examples[3].add("yes");
 
-        data[0][3] = "weak";
-        data[1][3] = "strong";
-        data[2][3] = "weak";
-        data[3][3] = "weak";
-        data[4][3] = "weak";
-        data[5][3] = "strong";
-        data[6][3] = "strong";
-        data[7][3] = "weak";
-        data[8][3] = "weak";
-        data[9][3] = "weak";
-        data[10][3] = "strong";
-        data[11][3] = "strong";
-        data[12][3] = "weak";
-        data[13][3] = "strong";
+        examples[4].add("rain");
+        examples[4].add("cool");
+        examples[4].add("normal");
+        examples[4].add("weak");
+        examples[4].add("yes");
 
+        examples[5].add("rain");
+        examples[5].add("cool");
+        examples[5].add("normal");
+        examples[5].add("strong");
+        examples[5].add("no");
 
-        data[0][4] = "no";
-        data[1][4] = "no";
-        data[2][4] = "yes";
-        data[3][4] = "yes";
-        data[4][4] = "yes";
-        data[5][4] = "no";
-        data[6][4] = "yes";
-        data[7][4] = "no";
-        data[8][4] = "yes";
-        data[9][4] = "yes";
-        data[10][4] = "yes";
-        data[11][4] = "yes";
-        data[12][4] = "yes";
-        data[13][4] = "no";
+        examples[6].add("overcast");
+        examples[6].add("cool");
+        examples[6].add("normal");
+        examples[6].add("strong");
+        examples[6].add("yes");
 
+        examples[7].add("sunny");
+        examples[7].add("mild");
+        examples[7].add("high");
+        examples[7].add("weak");
+        examples[7].add("no");
+
+        examples[8].add("sunny");
+        examples[8].add("cool");
+        examples[8].add("normal");
+        examples[8].add("weak");
+        examples[8].add("yes");
+
+        examples[9].add("rain");
+        examples[9].add("mild");
+        examples[9].add("normal");
+        examples[9].add("weak");
+        examples[9].add("yes");
+
+        examples[10].add("sunny");
+        examples[10].add("mild");
+        examples[10].add("normal");
+        examples[10].add("strong");
+        examples[10].add("yes");
+
+        examples[11].add("overcast");
+        examples[11].add("mild");
+        examples[11].add("high");
+        examples[11].add("strong");
+        examples[11].add("yes");
+
+        examples[12].add("overcast");
+        examples[12].add("hot");
+        examples[12].add("normal");
+        examples[12].add("weak");
+        examples[12].add("yes");
+
+        examples[13].add("rain");
+        examples[13].add("mild");
+        examples[13].add("high");
+        examples[13].add("strong");
+        examples[13].add("no");
+
+        data = new ArrayList<>(new TreeSet<>(Arrays.asList(examples)));
         // numberOfExamples
-        numberOfExamples = 14;
+        numberOfExamples = data.size();
 
         //explanatory Set
-        attributeSet = new Attribute[5];
+        attributeSet = new LinkedList<>();
 
         String[] outLookValues = new String[3], temperatureValues = new String[3], humidityValues = new String[2], windValues = new String[2], playValues = new String[2];
         outLookValues[0] = "overcast";
         outLookValues[1] = "rain";
         outLookValues[2] = "sunny";
         Arrays.sort(outLookValues);
-        attributeSet[0] = new DiscreteAttribute("Outlook", 0, outLookValues);
+        attributeSet.add(new DiscreteAttribute("Outlook", 0, outLookValues));
 
         temperatureValues[0] = "cool";
         temperatureValues[1] = "hot";
         temperatureValues[2] = "mild";
         Arrays.sort(temperatureValues);
-        attributeSet[1] = new DiscreteAttribute("Temperature", 1, temperatureValues);
+        attributeSet.add(new DiscreteAttribute("Temperature", 1, temperatureValues));
 
         humidityValues[0] = "high";
         humidityValues[1] = "normal";
         Arrays.sort(humidityValues);
-        attributeSet[2] = new DiscreteAttribute("Humidity", 2, humidityValues);
+        attributeSet.add(new DiscreteAttribute("Humidity", 2, humidityValues));
 
         windValues[0] = "strong";
         windValues[1] = "weak";
         Arrays.sort(windValues);
-        attributeSet[3] = new DiscreteAttribute("Wind", 3, windValues);
+        attributeSet.add(new DiscreteAttribute("Wind", 3, windValues));
 
         playValues[0] = "no";
         playValues[1] = "yes";
         Arrays.sort(playValues);
-        attributeSet[4] = new DiscreteAttribute("Play", 4, playValues);
-
-        distinctTuples = countDistinctTuples();
+        attributeSet.add(new DiscreteAttribute("Play", 4, playValues));
     }
 
     /**
@@ -164,7 +167,7 @@ public class Data {
      * @return Il numero degli attributi
      */
     public int getNumberOfExplanatoryAttributes() {
-        return attributeSet.length;
+        return attributeSet.size();
     }
 
     /**
@@ -172,7 +175,7 @@ public class Data {
      *
      * @return Array di data.Attribute che rappresenta lo schema del dataset
      */
-    Attribute[] getAttributeSchema() {
+    List<Attribute> getAttributeSchema() {
         return attributeSet;
     }
 
@@ -184,41 +187,44 @@ public class Data {
      * @return Il valore dell'attributo
      */
     public Object getAttributeValue(int exampleIndex, int attributeIndex) {
-        return data[exampleIndex][attributeIndex];
+        return data.get(exampleIndex).get(attributeIndex);
     }
 
     /**
      * Restituisce una Tupla che contiene i valori degli attributi di un esempio
+     *
      * @param index l'indice dell'esempio
      * @return la Tupla che contiene i valori degli attributi di un esempio
      */
     public Tuple getItemSet(int index) {
-        Tuple tuple = new Tuple(attributeSet.length);
-        for (int i = 0; i < attributeSet.length; i++)
-            tuple.add(new DiscreteItem(attributeSet[i], (String) data[index][i]), i);
+        Tuple tuple = new Tuple(attributeSet.size());
+        for (int i = 0; i < attributeSet.size(); i++)
+            tuple.add(new DiscreteItem(attributeSet.get(i), data.get(index).get(i)), i);
         return tuple;
     }
 
     /**
      * Esegue il passo 1 dell'algoritmo KMeans. Sceglie k centroidi in modo casuale
+     *
      * @param k il numero di centroidi da generare
      * @return un array di k int che rappresentano gli indici di riga delle transazioni scelte come centroidi
      * @throws OutOfRangeSampleSize se k non è compreso tra 1 e il numero di transazioni
      */
 
-    public int[] sampling(int k) throws OutOfRangeSampleSize{
-        if(k <= 0 || k > distinctTuples) throw new OutOfRangeSampleSize("Il numero dei centroidi deve essere compreso tra 1 e " + distinctTuples + ".");
+    public int[] sampling(int k) throws OutOfRangeSampleSize {
+        if (k <= 0 || k > getNumberOfExamples())
+            throw new OutOfRangeSampleSize("Il numero dei centroidi deve essere compreso tra 1 e " + getNumberOfExamples() + ".");
         int[] centroidIndexes = new int[k];
         //choose k random different centroids in data.
         Random rand = new Random();
         rand.setSeed(System.currentTimeMillis());
         for (int i = 0; i < k; i++) {
-            boolean found = false;
+            boolean found;
             int c;
             do {
                 found = false;
                 c = rand.nextInt(getNumberOfExamples());
-            // verify that centroid[c] is not equal to a centroide already stored in CentroidIndexes
+                // verify that centroid[c] is not equal to a centroide already stored in CentroidIndexes
                 for (int j = 0; j < i; j++)
                     if (compare(centroidIndexes[j], c)) {
                         found = true;
@@ -233,6 +239,7 @@ public class Data {
 
     /**
      * Verifica se due transazioni sono uguali
+     *
      * @param i indice della prima transazione
      * @param j indice della seconda transazione
      * @return true se le due transazioni sono uguali, false altrimenti
@@ -248,25 +255,27 @@ public class Data {
 
     /**
      * Calcola il centroide rispetto ad un attributo, dato un utility.ArraySet di indici di riga
-     * @param idList l'utility.ArraySet di indici da considerare
+     *
+     * @param idList    l'utility.ArraySet di indici da considerare
      * @param attribute l'attributo sul cui calcolare il centroide
      * @return il valore del centroide rispetto ad attribute
      */
 
-    Object computePrototype(ArraySet idList, Attribute attribute) {
+    Object computePrototype(Set<Integer> idList, Attribute attribute) {
         return computePrototype(idList, (DiscreteAttribute) attribute);
     }
 
     /**
      * Determina il valore che occorre più frequentemente per attribute nel sottoinsieme di dati individuato da idList
-     * @param idList l'utility.ArraySet di indici da considerare
+     *
+     * @param idList    l'HashSet di indici da considerare
      * @param attribute l'attributo sul cui calcolare il centroide
      * @return il valore del centroide rispetto ad attribute
      */
-    private String computePrototype(ArraySet idList, DiscreteAttribute attribute) {
+    private String computePrototype(Set<Integer> idList, DiscreteAttribute attribute) {
         Map<Object, Integer> counterMap = new HashMap<>();
-        for (int i = 0; i < attribute.getNumberOfDistinctValues(); i++) {
-            counterMap.put(attribute.getValue(i), attribute.frequency(this, idList, attribute.getValue(i)));
+        for (String attrVal : attribute) {
+            counterMap.put(attrVal, attribute.frequency(this, idList, attrVal));
         }
         Object proto = null;
         int maxVal = Integer.MIN_VALUE;
@@ -301,24 +310,38 @@ public class Data {
         return s;
     }
 
-    /**
-     * Restituisce il numero di tuple distinte nel dataset
-     * @return il numero di tuple distinte nel dataset
-     */
+    class Example implements Comparable<Example> {
 
-    //crea un metodo chiamato countDistinctTuples che conta il numero di tuple che sono uniche nel dataset utilizzando il metodo compare()
-    private int countDistinctTuples() {
-        int count = 0;
-        for (int i = 0; i < getNumberOfExamples(); i++) {
-            boolean found = false;
-            for (int j = 0; j < i; j++)
-                if (compare(i, j)) {
-                    found = true;
-                    break;
-                }
-            if (!found) count++;
+        private final List<Object> example = new ArrayList<>();
+
+        void add(Object o) {
+            example.add(o);
         }
-        return count;
+
+        Object get(int i) {
+            return example.get(i);
+        }
+
+        @Override
+        public int compareTo(Example o) {
+            for (int i = 0; i < example.size(); i++) {
+                if (!example.get(i).equals(o.get(i))) {
+                    return example.get(i).toString().compareTo(o.get(i).toString()); //TODO: controllare se toString() è opportuno
+                }
+            }
+            return 0;
+        }
+
+        @Override
+        public String toString() {
+            String s = "[";
+            for (Object o : example) {
+                s += o.toString() + ",";
+            }
+            s = s.substring(0, s.length() - 1);
+            s += "]";
+            return s;
+        }
     }
 
 }
