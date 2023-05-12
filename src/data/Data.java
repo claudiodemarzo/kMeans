@@ -314,11 +314,11 @@ public class Data {
 
         private final List<Object> example = new ArrayList<>();
 
-        void add(Object o) {
+        private void add(Object o) {
             example.add(o);
         }
 
-        Object get(int i) {
+        private Object get(int i) {
             return example.get(i);
         }
 
