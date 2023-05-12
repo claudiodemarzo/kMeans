@@ -356,7 +356,7 @@ public class Data {
         public int compareTo(Example o) {
             for (int i = 0; i < example.size(); i++) {
                 if (!example.get(i).equals(o.get(i))) {
-                    return example.get(i).toString().compareTo(o.get(i).toString()); //TODO: controllare se toString() è opportuno
+                    return example.get(i).toString().compareTo(o.get(i).toString());
                 }
             }
             return 0;
