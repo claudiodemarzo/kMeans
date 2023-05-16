@@ -4,6 +4,8 @@ import data.Data;
 import data.OutOfRangeSampleSize;
 import data.Tuple;
 
+import java.io.Serializable;
+
 /**
  * mining.ClusterSet.java
  * <p>
@@ -12,7 +14,7 @@ import data.Tuple;
  * @see Cluster
  * @author Claudio De Marzo
  */
-public class ClusterSet {
+public class ClusterSet implements Serializable {
 
     /**
      * Array di mining.Cluster

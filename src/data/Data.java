@@ -33,85 +33,85 @@ public class Data {
         }
 
         examples[0].add("sunny");
-        examples[0].add("hot");
+        examples[0].add(37.5);
         examples[0].add("high");
         examples[0].add("weak");
         examples[0].add("no");
 
         examples[1].add("sunny");
-        examples[1].add("hot");
+        examples[1].add(38.7);
         examples[1].add("high");
         examples[1].add("strong");
         examples[1].add("no");
 
         examples[2].add("overcast");
-        examples[2].add("hot");
+        examples[2].add(37.5);
         examples[2].add("high");
         examples[2].add("weak");
         examples[2].add("yes");
 
         examples[3].add("rain");
-        examples[3].add("mild");
+        examples[3].add(20.5);
         examples[3].add("high");
         examples[3].add("weak");
         examples[3].add("yes");
 
         examples[4].add("rain");
-        examples[4].add("cool");
+        examples[4].add(20.7);
         examples[4].add("normal");
         examples[4].add("weak");
         examples[4].add("yes");
 
         examples[5].add("rain");
-        examples[5].add("cool");
+        examples[5].add(21.2);
         examples[5].add("normal");
         examples[5].add("strong");
         examples[5].add("no");
 
         examples[6].add("overcast");
-        examples[6].add("cool");
+        examples[6].add(20.5);
         examples[6].add("normal");
         examples[6].add("strong");
         examples[6].add("yes");
 
         examples[7].add("sunny");
-        examples[7].add("mild");
+        examples[7].add(21.2);
         examples[7].add("high");
         examples[7].add("weak");
         examples[7].add("no");
 
         examples[8].add("sunny");
-        examples[8].add("cool");
+        examples[8].add(21.2);
         examples[8].add("normal");
         examples[8].add("weak");
         examples[8].add("yes");
 
         examples[9].add("rain");
-        examples[9].add("mild");
+        examples[9].add(19.8);
         examples[9].add("normal");
         examples[9].add("weak");
         examples[9].add("yes");
 
         examples[10].add("sunny");
-        examples[10].add("mild");
+        examples[10].add(3.5);
         examples[10].add("normal");
         examples[10].add("strong");
         examples[10].add("yes");
 
         examples[11].add("overcast");
-        examples[11].add("mild");
+        examples[11].add(5.6);
         examples[11].add("high");
         examples[11].add("strong");
         examples[11].add("yes");
 
         examples[12].add("overcast");
-        examples[12].add("hot");
+        examples[12].add(3.5);
         examples[12].add("normal");
         examples[12].add("weak");
         examples[12].add("yes");
 
         examples[13].add("rain");
-        examples[13].add("mild");
+        examples[13].add(3.2);
         examples[13].add("high");
         examples[13].add("strong");
         examples[13].add("no");
@@ -123,18 +123,14 @@ public class Data {
         //explanatory Set
         attributeSet = new LinkedList<>();
 
-        String[] outLookValues = new String[3], temperatureValues = new String[3], humidityValues = new String[2], windValues = new String[2], playValues = new String[2];
+        String[] outLookValues = new String[3], humidityValues = new String[2], windValues = new String[2], playValues = new String[2];
         outLookValues[0] = "overcast";
         outLookValues[1] = "rain";
         outLookValues[2] = "sunny";
         Arrays.sort(outLookValues);
         attributeSet.add(new DiscreteAttribute("Outlook", 0, outLookValues));
 
-        temperatureValues[0] = "cool";
-        temperatureValues[1] = "hot";
-        temperatureValues[2] = "mild";
-        Arrays.sort(temperatureValues);
-        attributeSet.add(new DiscreteAttribute("Temperature", 1, temperatureValues));
+        attributeSet.add(new ContinuousAttribute("Temperature", 1, 3.2, 38.7));
 
         humidityValues[0] = "high";
         humidityValues[1] = "normal";
@@ -199,7 +195,7 @@ public class Data {
     public Tuple getItemSet(int index) {
         Tuple tuple = new Tuple(attributeSet.size());
         for (int i = 0; i < attributeSet.size(); i++)
-            tuple.add(new DiscreteItem(attributeSet.get(i), data.get(index).get(i)), i);
+            tuple.add(attributeSet.get(i) instanceof DiscreteAttribute ? new DiscreteItem(attributeSet.get(i), data.get(index).get(i)) : new ContinuousItem(attributeSet.get(i), data.get(index).get(i)), i);
         return tuple;
     }
 
@@ -262,7 +258,10 @@ public class Data {
      */
 
     Object computePrototype(Set<Integer> idList, Attribute attribute) {
-        return computePrototype(idList, (DiscreteAttribute) attribute);
+        if (attribute instanceof ContinuousAttribute)
+            return computePrototype(idList, (ContinuousAttribute) attribute);
+        else
+            return computePrototype(idList, (DiscreteAttribute) attribute);
     }
 
     /**
@@ -285,6 +284,13 @@ public class Data {
                 proto = entry.getKey();
             }
         return (String) proto;
+    }
+
+    private Object computePrototype(Set<Integer> idList, ContinuousAttribute attribute) {
+        double sum = 0;
+        for (Integer i : idList)
+            sum += (double) getAttributeValue(i, attribute.getIndex());
+        return sum / idList.size();
     }
 
     /**

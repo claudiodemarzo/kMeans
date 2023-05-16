@@ -5,6 +5,8 @@ import data.OutOfRangeSampleSize;
 import mining.Cluster;
 import mining.ClusterSet;
 
+import java.io.*;
+
 /**
  * mining.KmeansMiner.java
  * <p>
@@ -25,6 +27,12 @@ public class KmeansMiner {
 
     public KmeansMiner(int k) {
         C = new ClusterSet(k);
+    }
+
+    public KmeansMiner(String fileName) throws IOException, ClassNotFoundException{
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName));
+        C = (ClusterSet) ois.readObject();
+        ois.close();
     }
 
     /**
@@ -66,5 +74,11 @@ public class KmeansMiner {
 
         } while (changedCluster);
         return numberOfIterations;
+    }
+
+    public void salva(String fileName) throws IOException{
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName, false));
+        oos.writeObject(C);
+        oos.close();
     }
 }
