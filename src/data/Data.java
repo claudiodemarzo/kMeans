@@ -250,9 +250,9 @@ public class Data {
     }
 
     /**
-     * Calcola il centroide rispetto ad un attributo, dato un utility.ArraySet di indici di riga
+     * Calcola il centroide rispetto ad un attributo, dato un Set di indici di riga
      *
-     * @param idList    l'utility.ArraySet di indici da considerare
+     * @param idList    il Set di indici da considerare
      * @param attribute l'attributo sul cui calcolare il centroide
      * @return il valore del centroide rispetto ad attribute
      */
@@ -265,10 +265,10 @@ public class Data {
     }
 
     /**
-     * Determina il valore che occorre più frequentemente per attribute nel sottoinsieme di dati individuato da idList
+     * Determina il valore che occorre più frequentemente per un DiscreteAttribute nel sottoinsieme di dati individuato da idList
      *
-     * @param idList    l'HashSet di indici da considerare
-     * @param attribute l'attributo sul cui calcolare il centroide
+     * @param idList    il Set di indici da considerare
+     * @param attribute il DiscreteAttribute sul cui calcolare il centroide
      * @return il valore del centroide rispetto ad attribute
      */
     private String computePrototype(Set<Integer> idList, DiscreteAttribute attribute) {
@@ -286,6 +286,13 @@ public class Data {
         return (String) proto;
     }
 
+    /**
+     * Determina il valore che occorre più frequentemente per un ContinuousAttribute nel sottoinsieme di dati individuato da idList
+     *
+     * @param idList    il Set di indici da considerare
+     * @param attribute il ContinuousAttribute sul cui calcolare il centroide
+     * @return il valore del centroide rispetto ad attribute
+     */
     private Object computePrototype(Set<Integer> idList, ContinuousAttribute attribute) {
         double sum = 0;
         for (Integer i : idList)

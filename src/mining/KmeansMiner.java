@@ -29,6 +29,12 @@ public class KmeansMiner {
         C = new ClusterSet(k);
     }
 
+    /**
+     * Costruttore della classe mining.KmeansMiner. Carica l'insieme dei cluster da file.
+     * @param fileName la path del file dal quale caricare il clusterset
+     * @throws IOException se si verifica un errore durante la lettura del file
+     * @throws ClassNotFoundException se il ClassLoader non riesce a trovare la classe ClusterSet
+     */
     public KmeansMiner(String fileName) throws IOException, ClassNotFoundException{
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName));
         C = (ClusterSet) ois.readObject();
@@ -75,6 +81,12 @@ public class KmeansMiner {
         } while (changedCluster);
         return numberOfIterations;
     }
+
+    /**
+     * Salva l'insieme dei cluster su file
+     * @param fileName la path del file su cui salvare il clusterset
+     * @throws IOException se si verifica un errore durante la scrittura del file
+     */
 
     public void salva(String fileName) throws IOException{
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName, false));

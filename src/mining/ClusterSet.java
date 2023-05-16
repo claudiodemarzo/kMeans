@@ -10,7 +10,9 @@ import java.io.Serializable;
  * mining.ClusterSet.java
  * <p>
  * Classe che modella un insieme di mining.Cluster
+ * Implementa l'interfaccia Serializable per permettere il salvataggio su file
  *
+ * @see Serializable
  * @see Cluster
  * @author Claudio De Marzo
  */
