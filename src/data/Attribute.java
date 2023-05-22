@@ -1,5 +1,7 @@
 package data;
 
+import java.io.Serializable;
+
 /**
  * data.Attribute.java
  * <p>
@@ -7,7 +9,7 @@ package data;
  *
  * @author Claudio De Marzo
  */
-abstract class Attribute {
+abstract class Attribute implements Serializable {
     /**
      * Nome dell'attributo
      */

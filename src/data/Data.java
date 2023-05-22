@@ -1,6 +1,9 @@
 package data;
 
+import java.sql.SQLException;
 import java.util.*;
+
+import database.*;
 
 /**
  * Data.java
@@ -13,7 +16,7 @@ public class Data {
     /**
      * Lista di oggetti Example che rappresenta il dataset
      */
-    private final List<Example> data;
+    private List<Example> data;
     /**
      * Numero di esempi
      */
@@ -26,8 +29,28 @@ public class Data {
     /**
      * Costruttore della classe Data. Costruisce il dataset attraverso l'inizializzazione della Lista di oggetti Examples data, il numero di esempi numberOfExamples e la lista di attributi attributeSet.
      */
-    public Data() {
-        Example[] examples = new Example[14];
+    public Data(String table) {
+        DbAccess db = new DbAccess();
+        try {
+            db.initConnection();
+        } catch (DatabaseConnectionException e) {
+            e.printStackTrace();
+        }
+        TableData td = new TableData(db);
+        TableSchema ts = null;
+        try {
+            ts = new TableSchema(db, table);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            data = td.getDistinctTransazioni(table);
+        } catch (SQLException | EmptySetException e) {
+            e.printStackTrace();
+        }
+
+
+        /*Example[] examples = new Example[14];
         for (int i = 0; i < examples.length; i++) {
             examples[i] = new Example();
         }
@@ -116,14 +139,30 @@ public class Data {
         examples[13].add("strong");
         examples[13].add("no");
 
-        data = new ArrayList<>(new TreeSet<>(Arrays.asList(examples)));
+        data = new ArrayList<>(new TreeSet<>(Arrays.asList(examples)));*/
         // numberOfExamples
         numberOfExamples = data.size();
 
         //explanatory Set
         attributeSet = new LinkedList<>();
 
-        String[] outLookValues = new String[3], humidityValues = new String[2], windValues = new String[2], playValues = new String[2];
+        for (int i = 0; i < ts.getNumberOfAttributes(); i++) {
+            if (ts.getColumn(i).isNumber()) {
+                try {
+                    attributeSet.add(new ContinuousAttribute(ts.getColumn(i).getColumnName(), i, (float) td.getAggregateColumnValue(table, ts.getColumn(i), QUERY_TYPE.MIN), (float) td.getAggregateColumnValue(table, ts.getColumn(i), QUERY_TYPE.MAX)));
+                } catch (SQLException | NoValueException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    attributeSet.add(new DiscreteAttribute(ts.getColumn(i).getColumnName(), i, td.getDistinctColumnValues(table, ts.getColumn(i)).toArray(new String[0])));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        /*String[] outLookValues = new String[3], humidityValues = new String[2], windValues = new String[2], playValues = new String[2];
         outLookValues[0] = "overcast";
         outLookValues[1] = "rain";
         outLookValues[2] = "sunny";
@@ -145,7 +184,7 @@ public class Data {
         playValues[0] = "no";
         playValues[1] = "yes";
         Arrays.sort(playValues);
-        attributeSet.add(new DiscreteAttribute("Play", 4, playValues));
+        attributeSet.add(new DiscreteAttribute("Play", 4, playValues));*/
     }
 
     /**
@@ -321,75 +360,6 @@ public class Data {
             s += "\n";
         }
         return s;
-    }
-
-    /**
-     * Data.Example
-     * Classe che rappresenta un esempio del dataset
-     * Implementa l'interfaccia Comparable
-     *
-     * @see Comparable
-     * @see Data
-     */
-    class Example implements Comparable<Example> {
-
-        /**
-         * Lista di oggetti che rappresentano i valori degli attributi dell'esempio
-         */
-        private final List<Object> example = new ArrayList<>();
-
-        /**
-         * Aggiunge un oggetto alla lista
-         *
-         * @param o l'oggetto da aggiungere
-         */
-        private void add(Object o) {
-            example.add(o);
-        }
-
-        /**
-         * Restituisce l'oggetto in posizione i
-         *
-         * @param i la posizione dell'oggetto da restituire
-         * @return l'oggetto in posizione i
-         */
-        private Object get(int i) {
-            return example.get(i);
-        }
-
-        /**
-         * Effettua un confronto tra due esempi. Restituisce 0 se sono uguali, altrimenti il risultato del confronto tra i primi due valori diversi
-         *
-         * @param o the object to be compared.
-         * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
-         * @see Comparable#compareTo(Object)
-         */
-
-        @Override
-        public int compareTo(Example o) {
-            for (int i = 0; i < example.size(); i++) {
-                if (!example.get(i).equals(o.get(i))) {
-                    return example.get(i).toString().compareTo(o.get(i).toString());
-                }
-            }
-            return 0;
-        }
-
-        /**
-         * Restituisce la rappresentazione in stringa dell'esempio
-         *
-         * @return la rappresentazione in stringa dell'esempio
-         */
-        @Override
-        public String toString() {
-            String s = "[";
-            for (Object o : example) {
-                s += o.toString() + ",";
-            }
-            s = s.substring(0, s.length() - 1);
-            s += "]";
-            return s;
-        }
     }
 
 }

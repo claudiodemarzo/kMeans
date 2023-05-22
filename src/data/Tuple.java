@@ -1,5 +1,7 @@
 package data;
 
+import java.io.Serializable;
+
 /**
  * data.Tuple.java
  * <p>
@@ -9,7 +11,7 @@ package data;
  * @see DiscreteItem
  * @author Claudio De Marzo
  */
-public class Tuple {
+public class Tuple implements Serializable {
 
     /**
      * Array di data.Item che rappresenta la tupla

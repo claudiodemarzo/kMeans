@@ -3,6 +3,7 @@ package mining;
 import data.Data;
 import data.Tuple;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ import java.util.Set;
  *
  * @author Dott.ssa Appice A.
  */
-public class Cluster {
+public class Cluster implements Serializable {
     /**
      * Centroide del cluster
      */
